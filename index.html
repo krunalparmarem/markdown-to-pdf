@@ -24,21 +24,105 @@
   </script>
 
   <body>
-
     <header>
-        <div id="menu-items">
-            <div><a href="/">Markdown Live Preview</a></div>
-            <div id="reset-button"><a href="#">Reset</a></div>
-            <div id="copy-button"><a href="#">Copy</a></div>
-            <div id="sync-button"><input type="checkbox" id="sync-scroll-checkbox"><label for="sync-scroll-checkbox">Sync scroll</label></div>
+        <div class="header-brand">
+            <div class="logo">M</div>
+            <a href="/">Markdown Live Preview</a>
         </div>
-        <div id="github"><a href="https://github.com/tanabe/markdown-live-preview"><img src="image/GitHub-Mark-Light-32px.webp"></a></div>
+        
+        <div class="toolbar">
+            <div class="toolbar-group">
+                <input type="file" id="file-input" class="file-input" accept=".md,.txt">
+                <label for="file-input" class="btn tooltip" data-tooltip="Open File">
+                    <svg class="icon" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                        <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                    </svg>
+                    Open
+                </label>
+                
+                <button id="save-button" class="btn tooltip" data-tooltip="Save File">
+                    <svg class="icon" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
+                    </svg>
+                    Save
+                </button>
+            </div>
+            
+            <div class="toolbar-group">
+                <button id="copy-button" class="btn tooltip" data-tooltip="Copy Markdown">
+                    <svg class="icon" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                    </svg>
+                    Copy
+                </button>
+                
+                <button id="export-html-button" class="btn tooltip" data-tooltip="Export as HTML">
+                    <svg class="icon" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+                        <path d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708zm-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708z"/>
+                    </svg>
+                    HTML
+                </button>
+                
+                <button id="pdf-button" class="btn tooltip" data-tooltip="Export as PDF">
+                    <svg class="icon" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                        <path d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.697 19.697 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.266.266 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.71 12.71 0 0 1 1.01-.193 11.744 11.744 0 0 1-.51-.858 20.801 20.801 0 0 1-.5 1.05zm2.446.45c.15.163.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.876 3.876 0 0 0-.612-.053zM8.078 7.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"/>
+                    </svg>
+                    PDF
+                </button>
+            </div>
+            
+            <div class="toolbar-group">
+                <div class="toggle-switch">
+                    <input type="checkbox" id="sync-scroll-checkbox">
+                    <span class="toggle-slider"></span>
+                </div>
+                <span class="toggle-label">Sync Scroll</span>
+            </div>
+            
+            <div class="toolbar-group">
+                <button id="theme-toggle" class="btn btn-icon tooltip" data-tooltip="Toggle Theme">
+                    <svg class="icon" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+                    </svg>
+                </button>
+                
+
+                
+                <button id="reset-button" class="btn btn-danger tooltip" data-tooltip="Reset Content">
+                    <svg class="icon" viewBox="0 0 16 16" fill="currentColor">
+                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+                        <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+                    </svg>
+                    Reset
+                </button>
+            </div>
+        </div>
+        
+
     </header>
 
     <div id="container" class="split-container">
-
         <div id="edit" class="column editor-pane">
-            <div id="editor-wrapper">
+            <div class="editor-header">
+                <div class="editor-title">
+                    <svg class="icon" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+                    </svg>
+                    <span id="editor-filename">untitled.md</span>
+                </div>
+                <div class="editor-actions">
+                    <button id="format-button" class="btn btn-icon tooltip" data-tooltip="Format Document">
+                        <svg class="icon" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M2.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-11zm5 3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h6a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-6zm0 3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h6a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-6zm0 3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-11z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="editor-wrapper">
                 <div id="editor"></div>
             </div>
         </div>
@@ -46,12 +130,50 @@
         <div id="split-divider" class="split-divider"></div>
 
         <div id="preview" class="column preview-pane">
-            <div id="preview-wrapper">
+            <div class="preview-header">
+                <div class="editor-title">
+                    <svg class="icon" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                    </svg>
+                    Preview
+                </div>
+                <div class="editor-actions">
+                    <button id="fullscreen-button" class="btn btn-icon tooltip" data-tooltip="Toggle Fullscreen">
+                        <svg class="icon" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M1.5 1a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4A1.5 1.5 0 0 1 1.5 0h4a.5.5 0 0 1 0 1h-4zM10 .5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 16 1.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5zM.5 10a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 0 14.5v-4a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="preview-wrapper">
                 <div id="output" class="content markdown-body"></div>
             </div>
         </div>
     </div>
 
-    <footer></footer>
+    <div class="status-bar">
+        <div class="status-left">
+            <div class="status-item">
+                <span>Lines: <span id="line-count">0</span></span>
+            </div>
+            <div class="status-item">
+                <span>Words: <span id="word-count">0</span></span>
+            </div>
+            <div class="status-item">
+                <span>Characters: <span id="char-count">0</span></span>
+            </div>
+        </div>
+        <div class="status-right">
+            <div class="status-item">
+                <span>Markdown</span>
+            </div>
+            <div class="status-item">
+                <span>UTF-8</span>
+            </div>
+            <div class="status-item">
+                <span id="cursor-position">Ln 1, Col 1</span>
+            </div>
+        </div>
+    </div>
   </body>
 </html>
