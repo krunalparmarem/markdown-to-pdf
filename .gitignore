@@ -67,3 +67,25 @@ node_modules/
 # dotenv environment variables file
 .env
 
+# Build output
+dist/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.kiro/
+
+# Lock files (keep package-lock.json, ignore others)
+pnpm-lock.yaml
+yarn.lock
+
+# Test and temporary files
+test.md
+*.test.md
+*.tmp
+
+# TypeScript
+*.tsbuildinfo
